@@ -6,15 +6,20 @@
 }
 
 .navbar {
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
-  /* padding: 1rem; */
+  padding: 20px ;
   background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .menu-button {
+  display: none;
 }
 
 .logo {
@@ -111,6 +116,13 @@ html {
 }
 
 @media (max-width: 768px) {
+  .navbar .menu-button {
+    display: flex;
+
+    input{
+      display: none;
+    }
+  }
   .about-us {
     grid-template-columns: 1fr;
     text-align: center;
@@ -120,6 +132,7 @@ html {
     padding-right: 0;
   }
 }
+
 .section-title {
   text-align: center;
   font-size: 2.5rem;
@@ -258,6 +271,10 @@ html {
 }
 
 .event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
   padding: 2rem;
 }
 
@@ -367,6 +384,9 @@ html {
   cursor: pointer;
 }
 
+
+
+
 @media (max-width: 768px) {
   .services-grid,
   .pricing-grid,
@@ -407,4 +427,51 @@ html {
   .footer-content {
     grid-template-columns: 1fr;
   }
+}
+
+
+body:has(.menu-button:checked) >.menu-modal{
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+.menu-modal{
+  position: fixed;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  z-index: 100000;
+  width: 100%;
+  height: 100%;
+  background: #0000009b;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+
+.menu-modal-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  a{
+    color: #fff;
+  }
+}
+
+
+.menu-modal-close{
+  color: red;
+  position: absolute;
+  top: 25px;
+  right: 20px;
+background: #000;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 5px;
 }
